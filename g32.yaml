@@ -1,3 +1,5 @@
+# Example for configuration.yaml to integrate G32 in Home Assistant via MQTT or REST endpoint
+
 # MQTT
 mqtt:
   sensor:
