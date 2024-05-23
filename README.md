@@ -123,7 +123,7 @@ TODO: Find out the full URL of the firmware.
 ### Sensor information service
 ```
 Host: socket.ottowildeapp.com
-Port: 5402
+Port: 4502
 ```
 The actual sensor readings are available via a raw TCP socket server and come in a binary blurp. Interestingly, this service does not require any authorization, only the serial number of the grill (as indicated on the sticker on the device) is required. Once you send `{"channel":"LISTEN_TO_GRILL","data":{"grillSerialNumber":" [SERIAL NUMBER IN LOWERCASE]"}'` to the server, it starts responding with a binary blurp every second. Thanks to the great work of user [Sandorson](https://www.grillsportverein.de/forum/members/sandorson.162581/) in the [GSV Forum](https://www.grillsportverein.de/forum/threads/otto-wilde-g32-connected-erfahrungen.352049/post-5350750), the content of this blurp (which seems to be identical to what is send over BLE by the device) is mostly understood and can therefore be transformed into a human readable format.
 
