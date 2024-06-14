@@ -89,6 +89,7 @@ Response:
                "nickname": "[NICKNAME]",
                "preferredConnectionProtocol": "wifi",
                "serialNumber": "[SERIAL NUMBER]",
+               "popKey": "[POP KEY]",
                "tsLastChanged": "[TIMESTAMP]"
            }
        ]
@@ -125,7 +126,7 @@ TODO: Find out the full URL of the firmware.
 Host: socket.ottowildeapp.com
 Port: 4502
 ```
-The actual sensor readings are available via a raw TCP socket server and come in a binary blurp. Interestingly, this service does not require any authorization, only the serial number of the grill (as indicated on the sticker on the device) is required. Once you send `{"channel":"LISTEN_TO_GRILL","data":{"grillSerialNumber":" [SERIAL NUMBER IN LOWERCASE]"}'` to the server, it starts responding with a binary blurp every second. Thanks to the great work of user [Sandorson](https://www.grillsportverein.de/forum/members/sandorson.162581/) in the [GSV Forum](https://www.grillsportverein.de/forum/threads/otto-wilde-g32-connected-erfahrungen.352049/post-5350750), the content of this blurp (which seems to be identical to what is send over BLE by the device) is mostly understood and can therefore be transformed into a human readable format.
+The actual sensor readings are available via a raw TCP socket server and come in a binary blurp. This service needs the pop-key and the serial number of the grill (as indicated on the sticker on the device) as authorization. Once you send `{"channel":"LISTEN_TO_GRILL","data":{"grillSerialNumber":" [SERIAL NUMBER IN LOWERCASE]","pop":"[POP-KEY]"}'` to the server, it starts responding with a binary blurp every second. Thanks to the great work of user [Sandorson](https://www.grillsportverein.de/forum/members/sandorson.162581/) in the [GSV Forum](https://www.grillsportverein.de/forum/threads/otto-wilde-g32-connected-erfahrungen.352049/post-5350750), the content of this blurp (which seems to be identical to what is send over BLE by the device) is mostly understood and can therefore be transformed into a human readable format.
 
 An MVP for a Cloud Function written in Node.JS can be found in this repository. Please do not consider it complete by any means, it's more of a proof of concept.
 
